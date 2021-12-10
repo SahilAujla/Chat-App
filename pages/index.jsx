@@ -5,12 +5,34 @@ import { Context } from "../context";
 import { useRouter } from "next/router";
 
 export default function Auth() {
-  const { setUsername, setSecret } = useContext(Context);
+  const { username, secret, setUsername, setSecret } = useContext(Context);
+
+  const router = useRouter();
+
+  function onSubmit(e) {
+    e.preventDefault();
+
+    if (username.length === 0 || secret.length === 0) return;
+
+    const data = {
+      username,
+      secret,
+    };
+
+    fetch("https://api.chatengine.io/users/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "PRIVATE-KEY": process.env.NEXT_PUBLIC_PRIVATE_KEY,
+      },
+      body: JSON.stringify(data),
+    }).then((r) => router.push("/chats"));
+  }
 
   return (
     <div className="background">
       <div className="auth-container">
-        <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
+        <form className="auth-form" onSubmit={onSubmit}>
           <div className="auth-title">NextJS Chat</div>
           <div className="input-container">
             <input
