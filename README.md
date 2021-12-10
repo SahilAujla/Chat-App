@@ -2,6 +2,8 @@
 
 ## A chat app with beautiful UI and all the latest features like media support, read receipts, chat groups, online status and much much more.
 
+### Try it Live -- https://next-js-chat.vercel.app/
+
 ![Chat-App-Screenshot](https://user-images.githubusercontent.com/83442423/145550996-ecae3cb6-75ee-40a5-a32a-d31466e29f47.png)
 
 
